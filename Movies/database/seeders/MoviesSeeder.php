@@ -26,8 +26,14 @@ class MoviesSeeder extends Seeder
                 Carbon::now()->toDateTimeString(),
                 null
             ],
+            /*
+             * Created at poate sa fie si NULL poate sa fie si o data din viitor
+             * e.g. NULL => Movie exista dar nu facem nimic cu el momentan
+             * e.g. in viitor => Movie create si o sa fie afisat de la data din viitor
+             */
             "created_at" => [
                 Carbon::now()->subMonth()->toDateTimeString(),
+                Carbon::now()->addMonth()->toDateTimeString(),
                 Carbon::now()->toDateTimeString(),
                 null
             ],

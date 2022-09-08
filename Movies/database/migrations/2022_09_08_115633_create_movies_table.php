@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger("status");
+            $table->tinyInteger("status")->default(1);
             $table->tinyText("name");
             $table->decimal("rating", 10, 2);
             $table->text("description");
