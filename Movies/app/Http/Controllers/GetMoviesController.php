@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\GetMoviesService;
-use http\Client\Response;
-use Illuminate\Http\Request;
 
 class GetMoviesController extends Controller
 {
