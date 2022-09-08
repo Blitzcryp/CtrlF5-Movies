@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Movies extends Model
+class Artists extends Model
 {
     use HasFactory, SoftDeletes, Prunable;
 
-    protected $table = "movies";
+    protected $table = "artists";
 
-    public function artists() {
-        return $this->belongsToMany(Artists::class);
+    public function movies() {
+        return $this->belongsToMany(Movies::class);
     }
 }
