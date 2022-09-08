@@ -2,20 +2,24 @@
 
 namespace Database\Seeders;
 
-use App\Models\Movies;
+use App\Models\Artists;
 use Carbon\Carbon;
 use Faker\Generator;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 
-class MoviesSeeder extends Seeder
+class ArtistsSeeder extends Seeder
 {
     public function run(Generator $faker)
     {
         $possibleValues = [
-          "status" => [
-              1, 2
-          ],
+            "title" => [
+                "star",
+                "star",
+                "star",
+                "writer",
+                "director"
+            ],
             "deleted_at" => [
                 Carbon::now()->subMonth()->toDateTimeString(),
                 Carbon::now()->toDateTimeString(),
@@ -35,19 +39,16 @@ class MoviesSeeder extends Seeder
 
         $possibleValues = Arr::crossJoin(...$possibleValues);
 
-        $movies = collect($possibleValues)->map(function ($movie) use ($faker){
+        $artists = collect($possibleValues)->map(function ($artist) use ($faker) {
             return [
-                "status" => $movie["status"],
-                "deleted_at" => $movie["deleted_at"],
-                "updated_at" => $movie["updated_at"],
-                "created_at" => $movie["created_at"],
-                "name" => $faker->paragraph(1),
-                "rating" => $faker->numberBetween(1, 10),
-                "description" => $faker->text,
-                "image" => $faker->imageUrl
-           ];
+                "title" => $artist["title"],
+                "name" => $faker->firstName,
+                "deleted_at" => $artist["deleted_at"],
+                "updated_at" => $artist["updated_at"],
+                "created_at" => $artist["created_at"],
+            ];
         })->toArray();
 
-        Movies::insert($movies);
+        Artists::insert($artists);
     }
 }
