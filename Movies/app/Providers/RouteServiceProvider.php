@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\DeleteMovieController;
 use App\Http\Controllers\GetMoviesController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -31,13 +32,10 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->group(["prefix" => "api", "middleware" => "api"], function(){
             $this->get("/movies", GetMoviesController::class)->name("get-movies");
+            $this->delete("/movies/{id}", DeleteMovieController::class)->name("delete-movies");
         });
 
         $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
-
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
