@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('movie_artist', function (Blueprint $table) {
+            /*
+             * Nu are sens sa fie integer daca e foreign;
+             * Id-ul nu va fi negative
+             */
+            $table->foreignId("movie_id")->constrained();
+            $table->foreignId("artist_id")->constrained();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('movie_artist');
+    }
+};
