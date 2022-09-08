@@ -15,7 +15,7 @@ return new class extends Migration
             $table->decimal("rating", 10, 2);
             $table->text("description");
             $table->string("image", 256);
-            $table->dateTime("delete_at")->nullable()->default(null);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

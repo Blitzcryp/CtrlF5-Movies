@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->tinyText("name");
             $table->enum("title", ["star", "writer", "director"]);
-            $table->dateTime("delete_at");
+            $table->softDeletes();
             $table->timestamps();
         });
     }
